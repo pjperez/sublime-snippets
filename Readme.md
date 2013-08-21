@@ -1,6 +1,10 @@
-Sublime Text 2 Snippets
-=======================
+Sublime Text 2 Snippets for network devices
+===========================================
 
-Here you'll find a collection of Sublime Text 2 snippets. Most of them will be for network devices (load balancers, firewalls, etc).
+Description
+-----------
+Collection of Sublime Text 2 snippets for network devices
 
-Feel free to download and install them (copy the files to your Sublime Text's packages directory)
+Installation
+------------
+Download the zip and copy it to the packages directory (inside Sublime Text, go to Preferences->Browse Packages in order to find the folder)
