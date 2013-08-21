@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[
+csw-rule "${1:RULENAME}" header "host" pattern "${2:PATTERN}" case-insensitive
+
+csw-policy "${3:POLICYNAME}" case-insensitive
+ default forward ${4:1}
+ match "${1:RULENAME}" forward ${5:2}
+ ]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>hostheader</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
