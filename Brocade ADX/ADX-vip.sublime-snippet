@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[
+server virtual VIP_${1:PUBLICIPADDRESS} ${2:PRIVATEIPADDRESS}
+ predictor ${3:least-conn}
+ port ${4:http}
+ port ${4:http} csw-policy "${7:POLICYNAME}"
+ port ${4:http} csw
+ port ${4:http} keep-alive
+ bind ${4:http} ${5:REALSERVER} ${6:http}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>adxvip</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
