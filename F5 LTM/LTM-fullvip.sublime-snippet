@@ -1,0 +1,40 @@
+<snippet>
+	<content><![CDATA[
+
+Server 1 Name:		 ${1:NAME-DEVICEID}-${2:IPADDRESS}
+Server 1 IP address: ${2:IPADDRESS}
+Server 1 Port:		 ${3:PORT}
+
+Server 2 Name:		 ${4:NAME-DEVICEID}-${5:IPADDRESS}
+Server 2 IP address: ${5:IPADDRESS}
+Server 2 Port:		 ${6:PORT}
+
+VIP Public IP:		 ${7:VIP_IP}
+VIP Private IP:		 ${8:VIP_PVT_IP}
+VIP port:			 ${9:VIP_PORT}
+
+Pool name:			 POOL-${7:VIP_IP}-${9:VIP_PORT}
+
+VIP name:			 VS-${7:VIP_IP}-${9:VIP_PORT}
+
+
+## Create members
+
+create ltm node ${2:IPADDRESS} screen ${1:NAME-DEVICEID}-${2:IPADDRESS}
+create ltm node ${5:IPADDRESS} screen ${4:NAME-DEVICEID}-${5:IPADDRESS}
+
+## Create pool
+
+create ltm pool POOL-${7:VIP_IP}-${9:VIP_PORT} members add { ${2:IPADDRESS}:${3:PORT} { session monitor-enabled } ${5:IPADDRESS}:${6:PORT} { session monitor-enabled } } monitor tcp service-down-action reselect
+
+## Create VIP
+
+create ltm virtual VS-${7:VIP_IP}-${9:VIP_PORT} destination ${8:VIP_PVT_IP}:${9:VIP_PORT} ip-protocol tcp mask 255.255.255.255 pool POOL-${7:VIP_IP}-${9:VIP_PORT} profiles add { http { } tcp { } }
+
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>ltmfullvip</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
